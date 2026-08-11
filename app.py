@@ -1,6 +1,6 @@
 import sys
 import os
-from flask import Flask, render_template
+from flask import Flask, send_from_directory
 
 # Force UTF-8 output on Windows
 if hasattr(sys.stdout, 'reconfigure'):
@@ -8,11 +8,11 @@ if hasattr(sys.stdout, 'reconfigure'):
 if hasattr(sys.stderr, 'reconfigure'):
     sys.stderr.reconfigure(encoding='utf-8')
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='.')
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return send_from_directory('.', 'index.html')
 
 if __name__ == '__main__':
     print("================================================================================")
