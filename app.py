@@ -19,6 +19,6 @@ if __name__ == '__main__':
     print(" FRONTEND SERVER STARTED")
     print("================================================================================")
     print(" Open browser at: http://localhost:3000")
-    print(" Ensure backend is running separately on port 5000!")
+    print(" Ensure backend is running remotely on https://backend-2-t8el.onrender.com !")
     print("================================================================================")
     app.run(port=3000, debug=True)
