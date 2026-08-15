@@ -1535,7 +1535,7 @@
       const dot = document.getElementById('systemStatusDot');
       const txt = document.getElementById('systemStatusText');
       try {
-        const res = await fetch(${BACKEND_URL}/api/health);
+        const res = await fetch(`${BACKEND_URL}/api/health`);
         const data = await res.json();
         if (data.status === 'healthy') {
           dot.classList.remove('offline');
@@ -1786,7 +1786,7 @@
         const stepTimer = setTimeout(() => setProgress(2), 1500);
         const stepTimer2 = setTimeout(() => setProgress(3), 3000);
 
-        const res = await fetch(${BACKEND_URL}/api/diagnose, {
+        const res = await fetch(`${BACKEND_URL}/api/diagnose`, {
           method: 'POST',
           body: formData
         });
@@ -1887,8 +1887,8 @@
       const enhancedPath = d.visualizations.enhanced_image_path;
       const resultEnhSection = document.getElementById('enhancedImageSection');
       if (enhancedPath) {
-        document.getElementById('resultOriginalImg').src = ${BACKEND_URL} + d.image_path;
-        document.getElementById('resultEnhancedImg').src = ${BACKEND_URL} + enhancedPath;
+        document.getElementById('resultOriginalImg').src = BACKEND_URL + d.image_path;
+        document.getElementById('resultEnhancedImg').src = BACKEND_URL + enhancedPath;
         resultEnhSection.classList.remove('hidden');
       } else {
         resultEnhSection.classList.add('hidden');
@@ -1897,8 +1897,8 @@
       // Grad-CAM Visualizations
       if (d.visualizations.available) {
         document.getElementById('vizSection').classList.remove('hidden');
-        document.getElementById('vizOriginal').src = ${BACKEND_URL} + d.image_path;
-        document.getElementById('vizGradcam').src = ${BACKEND_URL} + d.visualizations.gradcam_path;
+        document.getElementById('vizOriginal').src = BACKEND_URL + d.image_path;
+        document.getElementById('vizGradcam').src = BACKEND_URL + d.visualizations.gradcam_path;
       }
 
       // PDF buttons
@@ -1989,8 +1989,8 @@
     function downloadPDF(type) {
       if (!diagnosisResult) return;
       const path = type === 'doctor'
-        ? ${BACKEND_URL} + diagnosisResult.diagnosis.pdf_reports.doctor_report
-        : ${BACKEND_URL} + diagnosisResult.diagnosis.pdf_reports.patient_report;
+        ? BACKEND_URL + diagnosisResult.diagnosis.pdf_reports.doctor_report
+        : BACKEND_URL + diagnosisResult.diagnosis.pdf_reports.patient_report;
 
       if (!path) {
         alert(`${type === 'doctor' ? 'Medical' : 'Patient'} report is not available yet.`);
