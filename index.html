@@ -1533,7 +1533,7 @@
       const dot = document.getElementById('systemStatusDot');
       const txt = document.getElementById('systemStatusText');
       try {
-        const res = await fetch('/api/health');
+        const res = await fetch('https://backend-2-t8el.onrender.com/api/health');
         const data = await res.json();
         if (data.status === 'healthy') {
           dot.classList.remove('offline');
